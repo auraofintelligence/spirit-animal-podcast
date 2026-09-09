@@ -48,7 +48,7 @@ export default function NetworkPage() {
             <a key={project.name} href={project.href} className="network-row">
               <span>{String(index + 1).padStart(2, '0')}</span>
               <div><h2>{project.name}</h2><p>{project.role}</p></div>
-              <strong aria-hidden="true">&nearr;</strong>
+              <strong aria-hidden="true">↗</strong>
             </a>
           ))}
         </div>
