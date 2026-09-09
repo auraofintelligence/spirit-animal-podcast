@@ -312,7 +312,6 @@ export function RecordingCockpit() {
   }
 
   return (
-    <>
       <div className="spirit-console">
         <section className="console-topbar" aria-label="Recording session controls">
         <div className="console-identity"><span className="console-signal" aria-hidden="true">SA</span><div><small>Spirit Studio</small><strong>Recording cockpit</strong></div></div>
@@ -381,18 +380,5 @@ export function RecordingCockpit() {
         </section>
         </div>
       </div>
-
-      <section className="control-key-section">
-        <div className="control-key-heading"><div><small>Every button at a glance</small><h2>Control key</h2></div><p>The deck moves from recording marks into show beats, sounds, island scenes and reactions.</p></div>
-        <div className="control-key-grid">
-          {spiritPads.map((pad) => (
-            <article key={pad.code} className={`control-key-card pad-${pad.colour}`}>
-              <img src={`${assetBase}/assets/cockpit/icons/${pad.icon}.webp`} alt="" />
-              <div><strong>{pad.label}</strong><span>{pad.category} / {pad.code}</span><p>{pad.help}</p></div>
-            </article>
-          ))}
-        </div>
-      </section>
-    </>
   );
 }
