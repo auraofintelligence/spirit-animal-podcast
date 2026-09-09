@@ -6,30 +6,31 @@ import { Textarea } from '@/components/ui/textarea';
 
 const coreBeats = ['Animal arrival', 'The old track', 'The wild turn', 'Values reset', 'Leave a track'];
 
-const markerPads = [
-  { label: 'ON AIR', log: 'On air', colour: 'red', key: 'A' },
-  { label: 'MIC', log: 'Mic check', colour: 'blue', key: 'M' },
-  { label: 'KEEP', log: 'Keep this', colour: 'green', key: 'K' },
-  { label: 'CUT', log: 'Scene cut', colour: 'coral', key: 'C' },
-  { label: 'FOLLOW', log: 'Follow up', colour: 'gold', key: 'F' },
-  { label: 'CHECK', log: 'Source check', colour: 'cyan', key: 'S' },
-];
-
-const showPads = [
-  { label: 'ANIMAL', log: 'Animal arrives', cue: 'soft', colour: 'cyan' },
-  { label: 'VALUES', log: 'Values reset', cue: 'bell', colour: 'gold' },
-  { label: 'WILD TURN', log: 'Wild turn', cue: 'wild', colour: 'violet' },
-  { label: 'BIG QUESTION', log: 'Big question', cue: 'rise', colour: 'pink' },
-  { label: 'LEAVE A TRACK', log: 'Leave a track', cue: 'spark', colour: 'green' },
-];
-
-const soundPads = [
-  { label: 'MOON BELL', cue: 'bell', colour: 'gold' },
-  { label: 'SOFT CUE', cue: 'soft', colour: 'cyan' },
-  { label: 'WILD CALL', cue: 'wild', colour: 'violet' },
-  { label: 'HEARTBEAT', cue: 'heart', colour: 'coral' },
-  { label: 'OCEAN WASH', cue: 'ocean', colour: 'blue' },
-  { label: 'SPARK', cue: 'spark', colour: 'pink' },
+const spiritPads = [
+  { code: 'AIR', label: 'Broadcast beacon', icon: 'broadcast-beacon', category: 'Recording', action: 'On air', cue: 'soft', colour: 'green', help: 'Mark the moment the room goes live.' },
+  { code: 'MIC', label: 'Mic check', icon: 'studio-mic', category: 'Recording', action: 'Mic check', cue: 'soft', colour: 'blue', help: 'Mark a sound or microphone check.' },
+  { code: 'KEEP', label: 'Keep this', icon: 'keep-star', category: 'Edit', action: 'Keep this', cue: 'keep', colour: 'green', help: 'Flag a bright moment for the final cut.' },
+  { code: 'CUT', label: 'Scene cut', icon: 'scene-cut', category: 'Edit', action: 'Scene cut', cue: 'cut', colour: 'coral', help: 'Flag the clean place to cut or reset.' },
+  { code: 'FUP', label: 'Follow up', icon: 'follow-tracks', category: 'Edit', action: 'Follow up', cue: 'soft', colour: 'gold', help: 'Leave a track for later research or contact.' },
+  { code: 'SRC', label: 'Source check', icon: 'source-check', category: 'Edit', action: 'Source check', cue: 'soft', colour: 'cyan', help: 'Mark a claim that needs a source check.' },
+  { code: 'ANI', label: 'Animal arrival', icon: 'animal-arrival', category: 'Show beat', action: 'Animal arrival', cue: 'rise', colour: 'cyan', help: 'Bring the guest-chosen animal into the room.' },
+  { code: 'VAL', label: 'Values compass', icon: 'values-compass', category: 'Show beat', action: 'Values reset', cue: 'bell', colour: 'gold', help: 'Turn the conversation towards the chosen values.' },
+  { code: 'WILD', label: 'Wild turn', icon: 'wild-turn', category: 'Show beat', action: 'Wild turn', cue: 'wild', colour: 'violet', help: 'Follow the surprising track that just appeared.' },
+  { code: 'ASK', label: 'Big question', icon: 'big-question', category: 'Show beat', action: 'Big question', cue: 'rise', colour: 'blue', help: 'Open the biggest question in the conversation.' },
+  { code: 'TRK', label: 'Leave a track', icon: 'leave-track', category: 'Show beat', action: 'Leave a track', cue: 'spark', colour: 'cyan', help: 'Capture what travels home with the listener.' },
+  { code: 'RST', label: 'Reset energy', icon: 'reset', category: 'Room', action: 'Energy reset', cue: 'soft', colour: 'violet', help: 'Pause, breathe and begin the next movement fresh.' },
+  { code: 'BELL', label: 'Moon bell', icon: 'moon-bell', category: 'Sound', action: 'Moon bell', cue: 'bell', colour: 'gold', help: 'Play a luminous bell and mark the cue.' },
+  { code: 'SOFT', label: 'Soft cue', icon: 'soft-cue', category: 'Sound', action: 'Soft cue', cue: 'soft', colour: 'cyan', help: 'Play a gentle cue beneath the room.' },
+  { code: 'CALL', label: 'Wild call', icon: 'wild-call', category: 'Sound', action: 'Wild call', cue: 'wild', colour: 'violet', help: 'Play the show\'s bright animal call.' },
+  { code: 'BEAT', label: 'Heartbeat', icon: 'heartbeat', category: 'Sound', action: 'Heartbeat', cue: 'heart', colour: 'coral', help: 'Play a double heartbeat and mark the moment.' },
+  { code: 'WAV', label: 'Ocean wash', icon: 'ocean-wash', category: 'Sound', action: 'Ocean wash', cue: 'ocean', colour: 'blue', help: 'Play a soft ocean wash between movements.' },
+  { code: 'SPK', label: 'Spark', icon: 'spark', category: 'Sound', action: 'Spark', cue: 'spark', colour: 'pink', help: 'Play a quick bright sting for a new idea.' },
+  { code: 'WX', label: 'Island weather', icon: 'weather', category: 'Scene', action: 'Island weather', cue: 'ocean', colour: 'blue', help: 'Open a weather, season or island conditions beat.' },
+  { code: 'FERY', label: 'Ferry crossing', icon: 'ferry', category: 'Scene', action: 'Ferry crossing', cue: 'soft', colour: 'gold', help: 'Mark a crossing, arrival or departure story.' },
+  { code: 'YARN', label: 'Story circle', icon: 'yarn-circle', category: 'Scene', action: 'Story circle', cue: 'heart', colour: 'coral', help: 'Move into a shared yarn or remembered story.' },
+  { code: 'ART', label: 'Artist lens', icon: 'art', category: 'Scene', action: 'Artist lens', cue: 'spark', colour: 'pink', help: 'Turn towards making, imagination and creative work.' },
+  { code: 'YTH', label: 'Young voice', icon: 'youth-voice', category: 'Scene', action: 'Young voice', cue: 'rise', colour: 'cyan', help: 'Make room for a young voice or future-facing question.' },
+  { code: 'YES', label: 'Celebrate', icon: 'celebration', category: 'Reaction', action: 'Celebration', cue: 'spark', colour: 'green', help: 'Mark a win, breakthrough or joyful finish.' },
 ];
 
 type LogKind = 'marker' | 'cue' | 'beat' | 'note' | 'session';
@@ -57,6 +58,7 @@ function parseRunSheet(text: string) {
 }
 
 export function RecordingCockpit() {
+  const assetBase = process.env.NEXT_PUBLIC_BASE_PATH || '';
   const [running, setRunning] = useState(false);
   const [elapsed, setElapsed] = useState(0);
   const [beatSeconds, setBeatSeconds] = useState(0);
@@ -310,8 +312,9 @@ export function RecordingCockpit() {
   }
 
   return (
-    <div className="spirit-console">
-      <section className="console-topbar" aria-label="Recording session controls">
+    <>
+      <div className="spirit-console">
+        <section className="console-topbar" aria-label="Recording session controls">
         <div className="console-identity"><span className="console-signal" aria-hidden="true">SA</span><div><small>Spirit Studio</small><strong>Recording cockpit</strong></div></div>
         <div className={running ? 'console-status live' : 'console-status'}><span aria-hidden="true" />{running ? 'Rolling' : 'Standby'}</div>
         <div className="console-master-clock"><strong>{clock(elapsed)}</strong><small>session</small></div>
@@ -323,13 +326,13 @@ export function RecordingCockpit() {
           <button type="button" className="console-tool" onClick={toggleFullscreen} title="Open full screen"><span>FS</span><b>Full</b></button>
           <button type="button" className="console-tool danger" onClick={newSession} title="Start a fresh session"><span>NEW</span><b>Reset</b></button>
         </div>
-      </section>
+        </section>
 
-      <nav className="console-mobile-tabs" aria-label="Recording cockpit panels">
+        <nav className="console-mobile-tabs" aria-label="Recording cockpit panels">
         {(['live', 'run', 'deck', 'log'] as MobilePanel[]).map((panel) => <button key={panel} type="button" className={mobilePanel === panel ? 'active' : ''} onClick={() => setMobilePanel(panel)}>{panel}</button>)}
-      </nav>
+        </nav>
 
-      <div className={`console-workspace mobile-${mobilePanel}`}>
+        <div className={`console-workspace mobile-${mobilePanel}`}>
         <aside className="console-panel run-sheet-panel" data-console-panel="run">
           <div className="console-panel-heading"><div><small>Episode path</small><h2>Run sheet</h2></div><button type="button" className="mini-tool" onClick={() => setEditingBeats((value) => !value)}>{editingBeats ? 'Close' : 'Edit'}</button></div>
           <p className="run-source">{source}</p>
@@ -350,7 +353,7 @@ export function RecordingCockpit() {
           <button type="button" className={running ? 'record-control pause' : 'record-control'} onClick={toggleSession}><span aria-hidden="true">{running ? 'II' : '▶'}</span><strong>{running ? 'Pause' : 'Roll session'}</strong></button>
           <div className="beat-transport"><button type="button" onClick={() => moveBeat(-1)} disabled={beatIndex === 0}><span aria-hidden="true">←</span> Previous</button><div><small>Up next</small><strong>{nextBeat}</strong></div><button type="button" className="next" onClick={() => moveBeat(1)} disabled={beatIndex >= beats.length - 1}>Next <span aria-hidden="true">→</span></button></div>
           <div className="live-marker-grid" aria-label="Live production markers">
-            {markerPads.map((pad) => <button key={pad.label} type="button" className={`console-pad pad-${pad.colour}`} onClick={() => mark(pad.log, 'marker', pad.log === 'Scene cut' ? 'cut' : pad.log === 'Keep this' ? 'keep' : 'soft')}><span>{pad.key}</span><strong>{pad.label}</strong><small>mark</small></button>)}
+            {spiritPads.slice(0, 6).map((pad) => <button key={pad.code} type="button" className={`console-pad pad-${pad.colour}`} onClick={() => mark(pad.action, 'marker', pad.cue)}><img src={`${assetBase}/assets/cockpit/icons/${pad.icon}.webp`} alt="" /><span>{pad.code}</span><strong>{pad.label}</strong></button>)}
           </div>
         </section>
 
@@ -364,16 +367,32 @@ export function RecordingCockpit() {
           <div className="console-export-row"><select value={format} onChange={(event) => setFormat(event.target.value)} aria-label="Export format"><option value="md">Markdown</option><option value="txt">Text</option><option value="srt">Subtitles</option></select><button type="button" onClick={downloadLog}>Export log</button></div>
         </aside>
 
-        <section className="console-panel control-deck" data-console-panel="deck">
-          <div className="deck-label"><small>Live inserts</small><strong>Show deck</strong></div>
-          <div className="deck-scroll">{showPads.map((pad) => <button key={pad.label} type="button" className={`deck-pad pad-${pad.colour}`} onClick={() => mark(pad.log, 'cue', pad.cue)}><strong>{pad.label}</strong><small>segment</small></button>)}</div>
+        <section className="console-panel illustrated-deck" data-console-panel="deck">
+          <div className="deck-header"><div><small>Swipe sideways</small><strong>Spirit control deck</strong></div><span>24 live controls</span></div>
+          <div className="illustrated-pad-grid">
+            {spiritPads.map((pad) => (
+              <button key={pad.code} type="button" className={`illustrated-pad pad-${pad.colour}`} onClick={() => mark(pad.action, pad.category === 'Sound' ? 'cue' : 'marker', pad.cue)}>
+                <img src={`${assetBase}/assets/cockpit/icons/${pad.icon}.webp`} alt="" />
+                <span className="pad-code">{pad.code}</span>
+                <span className="pad-name">{pad.label}</span>
+              </button>
+            ))}
+          </div>
         </section>
-
-        <section className="console-panel sound-deck" data-console-panel="deck">
-          <div className="deck-label"><small>Built-in sound</small><strong>Spirit cues</strong></div>
-          <div className="deck-scroll">{soundPads.map((pad) => <button key={pad.label} type="button" className={`deck-pad pad-${pad.colour}`} onClick={() => mark(pad.label.toLowerCase(), 'cue', pad.cue)}><strong>{pad.label}</strong><small>play + mark</small></button>)}</div>
-        </section>
+        </div>
       </div>
-    </div>
+
+      <section className="control-key-section">
+        <div className="control-key-heading"><div><small>Every button at a glance</small><h2>Control key</h2></div><p>The deck moves from recording marks into show beats, sounds, island scenes and reactions.</p></div>
+        <div className="control-key-grid">
+          {spiritPads.map((pad) => (
+            <article key={pad.code} className={`control-key-card pad-${pad.colour}`}>
+              <img src={`${assetBase}/assets/cockpit/icons/${pad.icon}.webp`} alt="" />
+              <div><strong>{pad.label}</strong><span>{pad.category} / {pad.code}</span><p>{pad.help}</p></div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
