@@ -114,6 +114,44 @@ export function RecordingCockpit() {
     }
   }
 
+  async function importRunSheet(file?: File) {
+    if (!file) return;
+    const text = await file.text();
+    const lines = text
+      .split('\n')
+      .map((line) => line.replace(/^#{1,6}\s+|^[-*]\s+|^\d+\.\s+/, '').trim())
+      .filter((line) => line && !line.startsWith('Builder:') && line.length < 140);
+    if (!lines.length) return;
+    setBeatDraft(lines.join('\n'));
+    setBeats(lines);
+    setBeatIndex(0);
+    setBeatSeconds(0);
+    mark('Run sheet imported', file.name);
+  }
+
+  function syncStudioRunSheet() {
+    const saved = localStorage.getItem('spirit-animal-studio');
+    if (!saved) return;
+    try {
+      const values = JSON.parse(saved)?.runsheet || {};
+      const lines = [values.opening, values.middle, values.segment, values.reset, values.close]
+        .flatMap((value) => String(value || '').split('\n'))
+        .map((line) => line.trim())
+        .filter(Boolean);
+      if (!lines.length) return;
+      setBeatDraft(lines.join('\n'));
+      setBeats(lines);
+      setBeatIndex(0);
+      setBeatSeconds(0);
+      mark('Studio run sheet synced', lines.length + ' beats');
+    } catch {}
+  }
+
+  async function toggleFullscreen() {
+    if (document.fullscreenElement) await document.exitFullscreen();
+    else await document.documentElement.requestFullscreen();
+  }
+
   function addNote() {
     if (!note.trim()) return;
     mark('Note', note.trim());
@@ -136,6 +174,12 @@ export function RecordingCockpit() {
         <div><p className="section-note">Session clock</p><strong>{clock(elapsed)}</strong></div>
         <div className={running ? 'on-air live' : 'on-air'}><span />{running ? 'Rolling' : 'Standby'}</div>
         <div className="cockpit-top-actions">
+          <label className="file-button">
+            Import .md
+            <input type="file" accept=".md,text/markdown,text/plain" onChange={(event) => importRunSheet(event.target.files?.[0])} />
+          </label>
+          <Button className="studio-button" variant="outline" size="lg" onClick={syncStudioRunSheet}>Sync studio</Button>
+          <Button className="studio-button" variant="outline" size="lg" onClick={toggleFullscreen}>Full screen</Button>
           <Button className="studio-button hot" size="lg" onClick={() => { setRunning(!running); if (!running) mark('Recording started'); }}>{running ? 'Pause' : 'Start session'}</Button>
           <Button className="studio-button" variant="outline" size="lg" onClick={() => { setRunning(false); setElapsed(0); setBeatSeconds(0); setLog([]); }}>New session</Button>
         </div>
@@ -155,7 +199,7 @@ export function RecordingCockpit() {
           <p className="section-note">Current beat</p>
           <h2>{currentBeat}</h2>
           <strong className="beat-clock">{clock(beatSeconds).slice(3)}</strong>
-          <label className="duration-field"><span>Target minutes</span><input type="number" min="1" max="120" value={Math.round(duration / 60)} onChange={(event) => setDuration(Math.max(60, Number(event.target.value) * 60))} /></label>
+          <label className="duration-field"><span>Target minutes</span><input type="number" min="0" max="120" value={Math.round(duration / 60)} onChange={(event) => setDuration(Math.max(0, Number(event.target.value) * 60))} /></label>
           <div className="beat-progress"><span style={{ width: progress + '%' }} /></div>
           <p className="next-beat">Next: <strong>{nextBeat}</strong></p>
           <div className="beat-nav">
@@ -169,6 +213,20 @@ export function RecordingCockpit() {
             <button type="button" className="marker laugh" onClick={() => mark('Big laugh')}>LAUGH</button>
             <button type="button" className="marker fact" onClick={() => mark('Source check')}>CHECK</button>
             <button type="button" className="marker wild" onClick={() => mark('Wild turn')}>WILD</button>
+          </div>
+          <div className="cue-deck" aria-label="Show cues">
+            {[
+              'Animal arrival',
+              'Three minute reset',
+              'Creature feature',
+              'Wild claim check',
+              'Weather turn',
+              'Music cue',
+              'Big question',
+              'Leave a track',
+            ].map((label) => (
+              <button key={label} type="button" onClick={() => mark(label)}>{label}</button>
+            ))}
           </div>
         </section>
 

@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { InnerPage, PageStep } from '@/components/inner-page';
+import { SiteLink } from '@/components/site-link';
 import { StudioWorkbench } from '@/components/studio-workbench';
 
 export const metadata = { title: 'Studio' };
@@ -17,7 +17,7 @@ export default function StudioPage() {
     >
       <section className="section-shell studio-intro">
         <p>Nothing here sends a form anywhere. The draft stays on this device until someone copies it, downloads it or clears it.</p>
-        <Link className="button button-hot" href="/cockpit">Open the recording cockpit</Link>
+        <SiteLink className="button button-hot" href="/cockpit">Open the recording cockpit</SiteLink>
       </section>
       <section className="studio-shell"><StudioWorkbench /></section>
       <PageStep previous={['Episode ideas', '/ideas']} next={['Recording cockpit', '/cockpit']} />

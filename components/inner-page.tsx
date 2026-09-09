@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { SiteFooter, SiteHeader } from './site-shell';
+import { SiteLink } from './site-link';
 
 export function InnerPage({
   active,
@@ -48,9 +48,9 @@ export function PageStep({
 }) {
   return (
     <nav className="page-step section-shell" aria-label="Previous and next pages">
-      <Link href={previous[1]}><span>Previous</span><strong>{previous[0]}</strong></Link>
+      <SiteLink href={previous[1]}><span>Previous</span><strong>{previous[0]}</strong></SiteLink>
       <a className="back-top" href="#top">Back to top</a>
-      <Link className="next" href={next[1]}><span>Next</span><strong>{next[0]}</strong></Link>
+      <SiteLink className="next" href={next[1]}><span>Next</span><strong>{next[0]}</strong></SiteLink>
     </nav>
   );
 }

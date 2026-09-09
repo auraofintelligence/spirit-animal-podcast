@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { FeatureCard, InnerPage, PageStep } from '@/components/inner-page';
+import { SiteLink } from '@/components/site-link';
 
 export const metadata = { title: 'The big idea' };
 export const dynamic = 'force-static';
@@ -46,7 +46,7 @@ export default function ConceptPage() {
         <div className="big-copy">
           <p>Some episodes stay funny and light. Some go deep. Some become animated scenes, local field recordings, live gatherings, short films, songs or strange little public experiments.</p>
           <p>The format holds locals, visitors, artists, podcasters, older voices, young voices and people who have never touched a microphone. Nobody needs a grand title to bring a worthwhile story.</p>
-          <Link className="text-link" href="/compass">Meet the Animal Compass <span aria-hidden="true">&rarr;</span></Link>
+          <SiteLink className="text-link" href="/compass">Meet the Animal Compass <span aria-hidden="true">&rarr;</span></SiteLink>
         </div>
       </section>
 
