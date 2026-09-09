@@ -5,6 +5,11 @@ export const dynamic = 'force-static';
 
 const projects = [
   {
+    name: 'DaVinci Resolve Automations',
+    role: 'The shared editing skills and visual-bundle workshop for this show and the connected video projects.',
+    href: 'https://auraofintelligence.github.io/davinci-resolve-automations/',
+  },
+  {
     name: 'Minjerribah Screen & Media Network',
     role: 'The wider screen, sound, training and story network around the podcast.',
     href: 'https://auraofintelligence.github.io/minjerribah-screen-media-network/',
